@@ -17,8 +17,15 @@ serijski_broj varchar(100)
 korisnikid int
 ;)
 
---create table segrti(
---segrtid int,
---ime varchar(50),
---prezime varchar(50)
+create table segrti(
+segrtid int,
+ime varchar(50),
+prezime varchar(50)
+;)
+
+--create table popravak(
+--satid int,
+--datum_popravka date,
+--opis_popravka varchar(255),
+--segrtid int
 --;)
