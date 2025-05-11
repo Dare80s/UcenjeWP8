@@ -23,3 +23,12 @@ ime varchar(50),
 prezime(varchar(50),
 kontakt varchar(100)
 ;)
+
+
+--create table voznja(
+--id int,
+--datum datetime,
+--pocetna_lokacija varchar(100),
+--krajnja_lokacija varchar (100),
+--vozac_id
+--;)
