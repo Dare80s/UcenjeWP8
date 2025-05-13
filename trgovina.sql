@@ -1,5 +1,10 @@
-﻿--create database trgovina;
-
+﻿----create database trgovina;
+--use master;
+--go
+--drop database if exists trgovina;
+--go
+--create database trgovina;
+--go
 --use trgovina;
 
 --create table racuni(
