@@ -1,4 +1,5 @@
-﻿--create database urar silvija;
+﻿create database urarsilvijaispravak2;
+
 use master;
 go
 drop database if exists urarsilvija;
@@ -9,29 +10,31 @@ use urarsilvija;
 
 
 create table korisnik(
-korisnikid int,
-ime varchar(50),
-prezime varchar(50),
+korisnik int primary key,
+ime varchar(50)not null,
+prezime varchar(50) not null,
 kontakt varchar(100)
 );
 
 create table sat(
-sat_id int,
+sat_id int primary key,
+klijent int not null,
 marka varchar (50),
 model varchar(50),
 serijski_broj varchar(100)
-korisnik_id int
-);
-
-create table segrti(
-segrtid int,
-ime varchar(50),
-prezime varchar(50)
 );
 
 create table popravak(
-satid int,
-datum_popravka date,
-opis_popravka varchar(255),
-segrtid int
+popravak int primary key,
+sat_id int not null,
+datum_popravka date not null,
+opis_popravka varchar(255)
 );
+
+
+create table segrti(
+segrt_id int primary key,
+ime varchar(50)not null,
+prezime varchar(50)not null
+);
+
