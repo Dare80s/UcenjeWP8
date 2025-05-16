@@ -1,4 +1,4 @@
-﻿--create database edunovawp8;
+﻿
 use master;
 go
 drop database if exists edunovawp8;
@@ -22,7 +22,7 @@ aktivan bit not null default 0
 create table grupe(
 sifra int not null primary key identity(1,1),
 naziv varchar(20)not null,
-smjer int not null,
+smjer int not null references smjerovi(sifra),
 predavac varchar(50)
 );
 
@@ -35,8 +35,8 @@ email varchar(100)
 );
 
 create table clanovi(
-grupa int not null,
-polaznik int not null
+grupa int not null references grupe(sifra),
+polaznik int not null references polaznici(sifra)
 );
 
 insert into smjerovi (naziv,cijena,datumpokretanja,aktivan)
@@ -99,4 +99,6 @@ insert into clanovi (grupa,polaznik) values
 
 insert into clanovi(grupa,polaznik) values
 (3,7),(3,17),(3,27);
+
+select * from polaznici;
 
