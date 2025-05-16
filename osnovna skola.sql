@@ -1,5 +1,13 @@
 ﻿create database osnovna skola;
 
+use master;
+go
+drop database if exists osnovna skola;
+go
+create database osnovna skola;
+go
+use osnovna skola;
+
 create table dijete(
 dijete int primary key,
 ime varchar(50) not null,
@@ -22,11 +30,11 @@ učiteljica int,
 foreign key(uciteljica) references uciteljica(uciteljica)
 );
 
---create table dijete radionica(
---dijete int,
---radionica int,
---primary key(dijete, radionica),
---foreign key(dijete) references dijete(dijete),
---foreign key(radionica) references radionica(radionica)
---);
+create table dijete radionica(
+dijete int,
+radionica int,
+primary key(dijete, radionica),
+foreign key(dijete) references dijete(dijete),
+foreign key(radionica) references radionica(radionica)
+);
 
