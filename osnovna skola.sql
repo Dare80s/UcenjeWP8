@@ -1,40 +1,40 @@
-﻿create database osnovna skola;
+﻿
 
 use master;
 go
-drop database if exists osnovna skola;
+drop database if exists osnovnaskola;
 go
-create database osnovna skola;
+create database osnovnaskola;
 go
-use osnovna skola;
+use osnovnaskola;
 
 create table dijete(
-dijete int primary key,
+sifra int primary key,
 ime varchar(50) not null,
 prezime varchar(50)not null,
-datum rodenja date
+datumrodenja date
 );
 
-create table uciteljca(
-uciteljica int primary key,
+create table uciteljica(
+sifra int primary key,
 ime varchar(50) not null,
 prezime varchar(50) not null,
 predmet varchar(50)
 );
 
 create table radionica(
-radionica int primary key,
+sifra int primary key,
 naziv varchar(100) not null,
 opis text,
-učiteljica int,
-foreign key(uciteljica) references uciteljica(uciteljica)
+uciteljica int,
+foreign key(uciteljica) references uciteljica(sifra)
 );
 
-create table dijete radionica(
+create table dijeteradionica(
 dijete int,
 radionica int,
 primary key(dijete, radionica),
-foreign key(dijete) references dijete(dijete),
-foreign key(radionica) references radionica(radionica)
+foreign key(dijete) references dijete(sifra),
+foreign key(radionica) references radionica(sifra)
 );
 
