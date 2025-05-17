@@ -5,12 +5,19 @@ CREATE TABLE odvjetnik (
     ime TEXT NOT NULL
 );
 
---CREATE TABLE klijent (
---id SERIAL PRIMARY KEY,
---ime TEXT NOT NULL
+CREATE TABLE klijent (
+id SERIAL PRIMARY KEY,
+ime TEXT NOT NULL
 );
 
---CREATE TABLE suradnik (
--- id SERIAL PRIMARY KEY,
--- ime TEXT NOT NULL
+CREATE TABLE suradnik (
+ id SERIAL PRIMARY KEY,
+ ime TEXT NOT NULL
+);
+
+--CREATE TABLE obrana (
+--id SERIAL PRIMARY KEY,
+--odvjetnik_id INT REFERENCES odvjetnik(id),
+--klijent_id INT REFERENCES klijent(id),
+--datum DATE NOT NULL
 --);
