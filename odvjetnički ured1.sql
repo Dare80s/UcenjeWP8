@@ -1,5 +1,13 @@
 ﻿create database odvjetnicki ured;
 
+--use master;
+--go
+--drop database if exists odvjetnicki ured;
+--go
+--create database odvjetnicki ured;
+--go
+--use odvjetnicki ured;
+
 CREATE TABLE odvjetnik; 
 id SERIAL PRIMARY KEY,
 ime TEXT NOT NULL
@@ -22,8 +30,8 @@ klijent_id INT REFERENCES klijent(id),
 datum DATE NOT NULL
 );
 
---CREATE TABLE obrana_suradnik (
---obrana_id INTEGER REFERENCES obrana(id),
---suradnik_id INTEGER REFERENCES suradnik(id),
---PRIMARY KEY (obrana_id, suradnik_id)
---);
+CREATE TABLE obrana_suradnik (
+obrana_id INTEGER REFERENCES obrana(id),
+suradnik_id INTEGER REFERENCES suradnik(id),
+PRIMARY KEY (obrana_id, suradnik_id)
+);
