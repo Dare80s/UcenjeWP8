@@ -1,4 +1,4 @@
-﻿--create database odvjetnicki ured;
+﻿create database odvjetnicki ured;
 
 CREATE TABLE odvjetnik; 
 id SERIAL PRIMARY KEY,
@@ -10,10 +10,10 @@ id SERIAL PRIMARY KEY,
 ime TEXT NOT NULL
 );
 
-CREATE TABLE suradnik (
- id SERIAL PRIMARY KEY,
- ime TEXT NOT NULL
-);
+--CREATE TABLE suradnik (
+-- id SERIAL PRIMARY KEY,
+-- ime TEXT NOT NULL
+--);
 
 CREATE TABLE obrana (
 id SERIAL PRIMARY KEY,
