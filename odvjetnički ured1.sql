@@ -8,7 +8,7 @@
 --go
 --use odvjetnicki ured;
 
-CREATE TABLE odvjetnik; 
+CREATE TABLE odvjetnik;
 id SERIAL PRIMARY KEY,
 ime TEXT NOT NULL
 );
