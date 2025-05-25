@@ -41,6 +41,17 @@ join  prodaja pr on p.sifra_proizvoda = pr.sifra_proizvoda
 group by  p.sifra_proizvoda, p.naziv_proizvoda, p.nabavna_cijena, p.prodajna_cijena
 order by marza desc;
 
+-- marža po grupi proizvoda
+
+select gp.sifra_grupe,gp.naziv_grupe,
+sum(pr.kolicina) as ukupno_prodano,
+sum((p.prodajna_cijena - p.nabavna_cijena) * pr.kolicina) as ukupna_marza
+from grupe_proizvoda gp
+join proizvodi p on gp.sifra_grupe = p.grupa
+join prodaja pr on p.sifra_proizvoda = pr.sifra_proizvoda
+group by gp.sifra_grupe, gp.naziv_grupe
+order by ukupna_marza desc;
+
 -- unos 10 proizvoda u grupe proizvoda
 
 insert into grupe_proizvoda (sifra_grupe, naziv_grupe) values
