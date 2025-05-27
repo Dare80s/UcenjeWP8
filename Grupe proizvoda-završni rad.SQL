@@ -4,7 +4,7 @@ use master;
 go
 drop database if exists grupe_proizvoda;
 go
-create database grupe_proizvoda;
+create database grupe_proizvoda collate Croatian_CI_AS;
 go
 use grupe_proizvoda;
 
@@ -109,3 +109,15 @@ join grupe_proizvoda g on p.grupa = g.sifra_grupe;
 select pr.sifra_prodaje,p.naziv_proizvoda,pr.datum_prodaje,pr.kolicina,pr.cijena_po_jednici
 from prodaja pr
 join proizvodi p on pr.sifra_proizvoda = p.sifra_proizvoda;
+
+-- ispisati razliku prodajnog i nabavnog iznosa
+-- grupirane po nazivu grupe
+
+select gp.naziv_grupe,
+sum(p.nabavna_cijena * pr.kolicina) as ukupna_nabavna_vrijednost,
+sum(pr.cijena_po_jednici * pr.kolicina) as ukupna_prodajna_vrijednost,
+sum((pr.cijena_po_jednici - p.nabavna_cijena) * pr.kolicina) as ukupna_razlika
+from prodaja pr
+join proizvodi p on pr.sifra_proizvoda = p.sifra_proizvoda
+join grupe_proizvoda gp on p.grupa = gp.sifra_grupe
+group by gp.naziv_grupe;
