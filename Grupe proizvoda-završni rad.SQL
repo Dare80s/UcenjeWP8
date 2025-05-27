@@ -121,3 +121,15 @@ from prodaja pr
 join proizvodi p on pr.sifra_proizvoda = p.sifra_proizvoda
 join grupe_proizvoda gp on p.grupa = gp.sifra_grupe
 group by gp.naziv_grupe;
+
+select sifra_proizvoda,nabavna_cijena from proizvodi;
+select sifra_prodaje from prodaja;
+select  * from proizvodi where nabavna_cijena <5;
+select * from proizvodi;
+select sifra_proizvoda, nabavna_cijena from proizvodi;
+select * from grupe_proizvoda;
+
+-- gp je naziv grupa proizvoda u kojoj grupiramo rezultate
+-- sum(p.nabavna_cijena * pr.kolicina) uk. nab. vrijed. prodanih proizvoda u toj grupi
+-- sum(pr.cijena_po_jednici * pr.kolicina) uk. pr vrijed. prod. proiz. u toj grupi
+-- sum((pr.cijena_po_jednici - p.nabavna_cijena) * pr.kolicina) uk razlika između prodajne i nabave vrijednosti
