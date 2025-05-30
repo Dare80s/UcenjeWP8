@@ -1,4 +1,4 @@
-﻿ create database kolokvij_vjezba_1
+﻿create database kolokvij_vjezba_1;
 
 use master;
 go
@@ -22,7 +22,7 @@ create table zena (
 sifra int not null,
 treciputa datetime null,
 hlace varchar(40) not null,
-kratkaamajica varchar(31) not null,
+kratkamajica varchar(31) not null,
 jmbag char(11) not null,
 bojaociju varchar(39) not null,
 haljina varchar(44) not null,
