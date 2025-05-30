@@ -1,100 +1,65 @@
-﻿create database kolokvij_vjezba_1;
+﻿use kolokvij_vjezba_1;
 
-use master;
-go
-drop database if exists kolokvij_vjezba_1;
-go
-create database  kolokvij_vjezba_1;
-go
-use  kolokvij_vjezba_1;
+insert into sestra (sifra, introvertno, haljina, narukvica, maraka, hlace)values
+(1, 1, 'Plava haljina', 2, 150.50, 'Traperice'),
+(2, 0, 'Crvena haljina', 3, 200.75, 'Suknja'),
+(3, NULL, 'Zelena haljina', NULL, 180.00, 'Hlače');
 
-create table sestra (
-sifra int not null,
-introvertno bit null,
-haljina varchar(31) not null,
-narukvica int null,
-maraka decimal(16, 6) not null,
-hlace varchar(48) not null,
-primary key (sifra)
-);
+insert into zena (sifra, treciputa, hlace, kratkamajica, jmbag, bojaociju, haljina, sestra)values
+(1, '2025-05-30 10:00:00', 'Crne hlače', 'Bijela majica', '12345678901', 'Plave', 'Plava haljina', 1),
+(2, '2025-05-29 14:30:00', 'Sive hlače', 'Crna majica', '23456789012', 'Zelene', 'Crvena haljina', 2),
+(3, NULL, 'Bež hlače', 'Siva majica', '34567890123', 'Smeđe', 'Zelena haljina', 3);
 
-create table zena (
-sifra int not null,
-treciputa datetime null,
-hlace varchar(40) not null,
-kratkamajica varchar(31) not null,
-jmbag char(11) not null,
-bojaociju varchar(39) not null,
-haljina varchar(44) not null,
-sestra INT not null,
-primary key (sifra),
-foreign key (sestra) references sestra(sifra)
-);
+insert into muskarac (sifra, bojaociju, hlace, modelnaocala, maraka, zena)values
+(1, 'Plave', 'Crne hlače', 'Ray-Ban', 300.00, 1),
+(2, 'Zelene', 'Sive hlače', 'Oakley', 250.50, 2),
+(3, 'Smeđe', 'Bež hlače', 'Gucci', 400.75, 3);
 
-create table punac (
-sifra int not null,
-ogrlica int null,
-gustoca decimal(14,9) null,
-hlace varchar(41) not null,
-primary key (sifra)
-);
+insert into svekar (sifra, bojaociju, prstena, dukserica, lipa, eura, majica)values
+(1, 'Plave', 2, 'Crna dukserica', 50.25, 100.75, 'Bijela majica'),
+(2, 'Zelene', 1, 'Siva dukserica', 60.00, 120.50, 'Crna majica'),
+(3, 'Smeđe', 3, 'Bež dukserica', 70.75, 150.00, 'Siva majica');
 
+insert sestra_svekar (sifra, sestra, svekar)values
+(1, 1, 1),
+(2, 2, 2),
+(3, 3, 3);
 
-create table cura (
-sifra int not null,
-novcica decimal(16, 5) null,
-gustoca decimal(14, 10) not null,
-lipa decimal(13, 10) null,
-ogrlica int null,
-bojakose varchar(38) null,
-suknja varchar(38) null,
-punac int null,
-primary key (sifra),
-foreign key (punac) references punac(sifra)
-);
+select * from sestra;
 
-create table svekar (
-sifra int not null,
-bojaociju varchar(43) not null,
-prstena int null,
-dukserica varchar(47) null,
-lipa decimal(13, 8) null,
-eura decimal(12, 7) null,
-majica varchar(35) null,
-primary key (sifra)
-);
+select * from zena;
 
-create table sestra_svekar (
-sifra int not null,
-sestra int not null,
-svekar int not null,
-primary key (sifra),
-foreign key (sestra) references sestra(sifra),
-foreign key (svekar) references svekar(sifra)
-);
+select * from muskarac;
 
+select * from svekar;
 
+select * from sestra_svekar;
 
-create table muskarac (
-sifra int not null,
-bojaociju varchar(50) not null,
-hlace varchar(30) null,
-modelnaocala varchar(43) not null,
-maraka decimal(14, 5) null,
-zena int not null,
-primary key (sifra),
-foreign key (zena) references zena(sifra)
-);
+update cura 
+set gustoca = 15.77;
 
-create table mladic (
-sifra int not null,
-suknja varchar(50) not null,
-kuna decimal(16, 8) not null,
-drugiputa datetime null,
-asocijalno bit null,
-ekstrovertno bit not null,
-dukserica varchar(48) not null,
-muskarac int null,
-primary key (sifra),
-foreign key (muskarac) references muskarac(sifra)
-);
+select sifra, gustoca from cura;
+
+delete from mladic 
+where kuna > 15.78;
+
+select * from mladic where kuna > 15.78;
+
+select kratkamajica from zena
+where hlace like '%ana%';
+
+-- ne postoji izravna veza između tablica mladic i zena
+select svekar.dukserica, mladic.asocijalno, muskarac.hlace
+from mladic
+join muskarac on mladic.muskarac = muskarac.sifra
+join zena on muskarac.zena = zena.sifra
+join sestra on zena.sestra = sestra.sifra
+join sestra_svekar on sestra.sifra = sestra_svekar.sestra
+join svekar on sestra_svekar.svekar = svekar.sifra
+where zena.hlace like 'a%' and sestra.haljina like '%ba%'
+order by muskarac.hlace desc;
+
+select sestra.haljina, sestra.maraka 
+from sestra
+left join sestra_svekar on sestra.sifra = sestra_svekar.sestra
+where sestra_svekar.sestra is null;
