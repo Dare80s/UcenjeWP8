@@ -21,7 +21,7 @@ create table decko (
 sifra int primary key,
 indiferentno bit null,
 vesta varchar(30) null,
-asocijalno bit not null,
+asocijalno bit not null
 );
 
 create table cura (
@@ -42,7 +42,8 @@ modelnaocala varchar(37) not null,
 treciputa datetime not null,
 ekstroventno bit null,
 prviputa datetime null,
-svekar int not null
+svekar int not null,
+foreign key(svekar) references svekar(sifra)
 );
 
 create table svekar (
@@ -76,7 +77,9 @@ create table brat (
 sifra int primary key,
 suknja varchar(47) null,
 ogrlica int not null,
-asocijanlno bit not null,
+asocijalno bit not null,
 neprijatelj int null,
 foreign key(neprijatelj) references neprijatelj(sifra)
 );
+
+
