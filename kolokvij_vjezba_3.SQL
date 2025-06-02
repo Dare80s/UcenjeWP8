@@ -1,85 +1,53 @@
-﻿﻿create database kolokvij_vjezba_3;
+﻿use kolokvij_vjezba_3;
 
-use master;
-go
-drop database if exists kolokvij_vjezba_3;
-go
-create database  kolokvij_vjezba_3 collate Croatian_CI_AS;
-go
-use  kolokvij_vjezba_3;
 
-create table cura (
-sifra int primary key,
-dukserica varchar(49) not null,
-maraka decimal(13,7),
-drugiputa datetime,
-majica varchar(49),
-novcica decimal(15,6),
-ogrlica int not null
-);
+insert into prijatelj (sifra, kuna, haljina, lipa, dukserica, indiferentno) values
+(1, 100.00, 'Haljina A', 50.00, 'Dukserica A', 1),
+(2, 150.00, 'Haljina B', 75.00, 'Dukserica B', 0),
+(3, 200.00, 'Haljina C', 100.00, 'Dukserica C', 1);
 
-create table svekar (
-sifra int primary key,
-narukvica int not null,
-suknja varchar(36),
-bojakose varchar(36),
-prsten INT,
-novcica decimal(16,8) not null,
-cura INT not null,
-foreign key (cura) references cura(sifra)
-);
+insert into brat (sifra, jmbag, ogrlica, ekstroventno) values
+(1, '12345678901', 1, 1),
+(2, '23456789012', 2, 0),
+(3, '34567890123', 3, 1);
 
-create table prijatelj (
-sifra int primary key,
-kuna decimal(16,10),
-haljina varchar(37) not null,
-lipa decimal(13,10),
-dukserica varchar(31),
-indiferentno bit
-);
+insert into ostavljena (sifra, kuna, lipa, majica, modelnaocala, prijatelj) values
+(1, 100.00, 50.00, 'Majica A', 'Model A', 1),
+(2, 150.00, 75.00, 'Majica B', 'Model B', 2),
+(3, 200.00, 100.00, 'Majica C', 'Model C', 3);
 
-create table ostavljena (
-sifra int primary key,
-kuna decimal(17,5),
-lipa decimal(13,9),
-majica varchar(36),
-modelnaocala varchar(37) not null,
-prijatelj int,
-foreign key (prijatelj) references prijatelj(sifra)
-);
+insert into snasa (sifra, introvertno, kuna, eura, treciputa, ostavljena) values
+(1, 1, 100.00, 50.00, '2025-06-01 10:00:00', 1),
+(2, 0, 150.00, 75.00, '2025-06-02 11:00:00', 2),
+(3, 1, 200.00, 100.00, '2025-06-03 12:00:00', 3);
 
-create table snasa (
-sifra int primary key,
-introvertno bit,
-kuna decimal(15,9) not null,
-eura decimal(12,9) not null,
-treciputa datetime,
-ostavljena int,
-foreign key (ostavljena) references ostavljena(sifra)
-);
+select * from prijatelj;
 
-create table brat (
-sifra int primary key,
-jmbag char(11),
-ogrlica int not null,
-ekstroventno bit not null
-);
+select *from brat;
 
-create table prijatelj_brat (
-sifra int primary key,
-prijatelj int not null,
-brat int not null,
-foreign key (prijatelj) references prijatelj(sifra),
-foreign key (brat) references brat(sifra)
-);
+select * from ostavljena;
 
-create table punica (
-sifra int primary key,
-asocijalno bit not null,
-kratkamajica varchar(44),
-kuna decimal(13,8) NOT NULL,
-vesta varchar(32) NOT NULL,
-snasa int,
-foreign key (snasa) references snasa(sifra)
-);
+select * from snasa;
 
+update svekar
+set suknja = 'Osijek';
+
+delete from punica
+where kratkamajica = 'AB';
+
+select brat.ekstroventno, punica.vesta, snasa.kuna
+from brat
+join prijatelj_brat on brat.sifra = prijatelj_brat.brat
+join prijatelj on prijatelj_brat.prijatelj = prijatelj.sifra
+join ostavljena on prijatelj.sifra = ostavljena.prijatelj
+join snasa on ostavljena.sifra = snasa.ostavljena
+join punica on snasa.sifra = punica.snasa
+where ostavljena.lipa <> 91
+and prijatelj.haljina like '%ba%'
+order by
+snasa.kuna desc;
+
+select p.haljina, p.lipa
+from prijatelj p 
+left join prijatelj_brat pb on p.sifra = pb.prijatelj
+where pb.prijatelj is null;
