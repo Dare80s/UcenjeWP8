@@ -1,6 +1,6 @@
 ﻿using Ucenje;
 
-E01UlazIzlaz.Izvedi();
+E07ForPetlja.Izvedi();
 
 
 
