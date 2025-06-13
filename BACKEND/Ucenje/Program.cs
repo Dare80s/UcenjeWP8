@@ -1,7 +1,7 @@
 ﻿using Ucenje;
 
-E07ForPetlja.Izvedi();
-
+//E07ForPetlja.Izvedi();
+E11TryCatch.Izvedi();
 
 
 
