@@ -16,7 +16,8 @@
 //E11TryCatch.Izvedi();
 //E11Z01.Izvedi();
 //E12Metode.Izvedi();
-E13Rekurzija.Izvedi();
+//E13Rekurzija.Izvedi();
+E001Zad.Izvedi();
 
 // See https://aka.ms/new-console-template for more information
 //Console.WriteLine("Hello, World!");
