@@ -1,5 +1,5 @@
 ﻿
-using System;
+
 
 namespace Ucenje.E14KlasaObjekt
 { // Klasa je opisnik objekta -> naučiti napamet
