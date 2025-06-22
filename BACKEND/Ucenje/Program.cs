@@ -1,7 +1,7 @@
 ﻿using Ucenje;
 
-
 new Ucenje.E16Polimorfizam.Program();
+//new Ucenje.E16Polimorfizam.Program();
 
 
 //E11Z02.Izvedi();
