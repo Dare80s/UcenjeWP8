@@ -1,6 +1,9 @@
 ﻿using Ucenje;
 
-new Ucenje.E16Polimorfizam.Program();
+
+Ucenje.E17Vjezbanje.Vjezbanje.Pokreni();
+//new Ucenje.E17Vjezbanje.Vjezbanje();    
+//new Ucenje.E16Polimorfizam.Program();
 //new Ucenje.E16Polimorfizam.Program();
 
 
