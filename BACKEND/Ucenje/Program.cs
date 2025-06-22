@@ -1,12 +1,12 @@
 ﻿using Ucenje;
 
 
-
+new Ucenje.E16Polimorfizam.Program();
 
 
 //E11Z02.Izvedi();
 // ključna riječ new poziva konstruktor klase
-new Ucenje.E14KlasaObjekt.Program();
+//new Ucenje.E14KlasaObjekt.Program();
 //E07ForPetlja.Izvedi();
 //E11TryCatch.Izvedi();
 //E13Rekurzija.Izvedi();
