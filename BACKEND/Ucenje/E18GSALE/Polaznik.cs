@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ucenje.edunova
+namespace Ucenje.E18GSALE
 {
-    internal class Mjesto
+    public class Polaznik: Entitet
     {
+        public string Ime { get; set; } = "";
     }
 }

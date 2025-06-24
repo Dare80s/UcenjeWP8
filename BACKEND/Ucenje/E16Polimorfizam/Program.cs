@@ -8,9 +8,9 @@ namespace Ucenje.E16Polimorfizam
         {
             Console.WriteLine("Polimorfizam");
 
-         
 
 
+        }
 
     }
 }

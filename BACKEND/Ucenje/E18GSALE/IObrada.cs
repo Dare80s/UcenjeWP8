@@ -4,9 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Ucenje.edunova
+namespace Ucenje.E18GSALE
 {
-    internal class Entitet
+    public interface IObrada
     {
+
+        public string Metoda();
+        public void OdradiPosao();
+
     }
 }
