@@ -3,24 +3,45 @@ using Microsoft.AspNetCore.Mvc;
 namespace WebAPI.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("[controller]")] // ime klase bez controller. Ova klasa WeatherForecast
     public class WeatherForecastController : ControllerBase
     {
         private static readonly string[] Summaries = new[]
         {
-            "Hladno je", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
+            "Hladno je", "Vruæe je", "Ugodno "
         };
 
-        private readonly ILogger<WeatherForecastController> _logger;
-
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
-        {
-            _logger = logger;
-        }
+ 
 
         [HttpGet(Name = "GetWeatherForecast")]
         public IEnumerable<WeatherForecast> Get()
         {
+            
+            foreach(var item in Request.Headers)
+            {
+                Console.WriteLine("{0}: {1}", item.Key, item.Value);
+            }
+            Console.WriteLine("********************************");
+            
+            Console.WriteLine(
+                Request
+                .Headers["sec-ch-ua"]
+                .ToString()
+                .Split(";")[0]
+                .Replace("\"","")
+                );
+
+            WeatherForecast[] niz = new WeatherForecast[5];
+            for (int i = 0; i < niz.Length; i++)
+            {
+                niz[i] = new WeatherForecast() { 
+                Date = DateOnly.FromDateTime(new DateTime(2000,2,4)),
+                TemperatureC = 12,
+                Summary= Summaries[Random.Shared.Next(Summaries.Length)]
+                };
+            }
+            return niz;
+            /*
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
                 Date = DateOnly.FromDateTime(DateTime.Now.AddDays(index)),
@@ -28,6 +49,7 @@ namespace WebAPI.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+            */
         }
     }
 }

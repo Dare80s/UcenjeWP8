@@ -21,10 +21,13 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseSwagger();
-app.UseSwaggerUI(p =>
+app.UseSwaggerUI(options =>
 {
-    p.EnableTryItOutByDefault();
+    // https://github.com/domaindrivendev/Swashbuckle.AspNetCore/blob/cec1dc005b96b6a3d3962ba063ded2e5b8f9636b/src/Swashbuckle.AspNetCore.SwaggerUI/SwaggerUIOptionsExtensions.cs#L143
+    //options.ConfigObject.TryItOutEnabled = true;
+    options.EnableTryItOutByDefault();
 });
+
 
 app.MapControllers();
 
