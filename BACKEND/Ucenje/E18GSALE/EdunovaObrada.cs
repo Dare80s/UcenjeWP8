@@ -6,7 +6,7 @@
 
         public string Metoda()
         {
-            return "";
+            return "Edunova";
         }
 
         public void OdradiPosao()

@@ -15,6 +15,9 @@ namespace Ucenje.E18GSALE
         public void Posao()
         {
             Console.WriteLine("Obrađujem {0}",PredmetObrade);
+
+            // Primjer depricated u C#
+            // Thread.ResetAbort();
         }
 
     }
